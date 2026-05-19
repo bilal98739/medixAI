@@ -7,24 +7,25 @@ import mongoose from "mongoose";
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { error } = await requireRole(request, "admin");
     if (error) return error;
 
+    const { id } = await params;
     await connectDB();
 
-    if (!mongoose.Types.ObjectId.isValid(params.id)) {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
       return errorResponse("Invalid user ID", 400);
     }
 
-    const user = await User.findByIdAndDelete(params.id);
+    const user = await User.findByIdAndDelete(id);
     if (!user) {
       return errorResponse("User not found", 404);
     }
 
-    return successResponse({ deletedId: params.id }, "User deleted successfully");
+    return successResponse({ deletedId: id }, "User deleted successfully");
   } catch (error) {
     return errorResponse("Failed to delete user", 500, error);
   }
