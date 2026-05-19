@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🏥 MedixAI — Smart Hospital Management System
 
 <div align="center">
@@ -410,3 +411,6 @@ Built with ❤️ for the healthcare industry
 **[⬆ Back to top](#-medixai--smart-hospital-management-system)**
 
 </div>
+=======
+# medixAI
+>>>>>>> 48505bbc91477c71f18134598dc5b2fe15aa3b9e
